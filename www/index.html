@@ -11,7 +11,7 @@
     <script src="keys.js"></script>
     <script>
         let ncmb = new NCMB(appKey, clientKey);
-        let UTdata = ncmb.DataStore("UpdateTest");
+        let UTdata = ncmb.DataStore("report2");
         let key = "score";
 
         function enterData() {
@@ -119,6 +119,8 @@
                     $("#display").html("update fail:" + JSON.stringify(error));
                 })
         }
+
+        
     </script>
 </head>
 
@@ -133,6 +135,8 @@
         <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
         <a onclick="countData()" class="btn btn-outline-secondary" role="button">Count</a>
         <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a>
+        <a onclick="scorejudge()" class="btn btn-outline-secondary"
+        role="button">Judge</a>
     </div>
     <div>
         <input type="text" id="update" placeholder="更新">
