@@ -150,6 +150,25 @@
 
         }
 
+        function sumScore(){
+            UTdata.fetchAll()
+            .then(function(results){
+                var sum = 0;
+                for(let i = 0;i < results.length;i++){
+                    sum += parseInt(results[i].get(key));
+                }
+                $("#display").removeClass();
+                $("#display").addClass("text-light");
+                $("#display").addClass("bg-primary");
+                $("#display").html("合計点: " + sum);
+            })
+            .catch(function(error) {
+                    $("#display").removeClass();
+                    $("#display").addClass("bg-warning");
+                    $("#display").html("delete fail:" + JSON.stringify(error));
+                })
+        }
+
 
         
         
