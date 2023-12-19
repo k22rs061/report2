@@ -169,6 +169,30 @@
                 })
         }
 
+        function sumAverage(){
+            UTdata.fetchAll()
+            .then(function(results){
+                var sum = 0;
+                var youso = 0;
+                var ave;
+                for(let i = 0;i < results.length;i++){
+                    sum += parseInt(results[i].get(key));
+                    youso += 1;
+                }
+                ave = sum / youso;
+
+                $("#display").removeClass();
+                $("#display").addClass("text-light");
+                $("#display").addClass("bg-primary");
+                $("#display").html("平均点: " + ave);
+            })
+            .catch(function(error) {
+                    $("#display").removeClass();
+                    $("#display").addClass("bg-warning");
+                    $("#display").html("delete fail:" + JSON.stringify(error));
+                })
+        }
+
 
         
         
@@ -196,7 +220,7 @@
         <a onclick="scoreJudge()" class="btn btn-outline-secondary"
         role="button">Judge</a><br>
         <a onclick="sumScore()", class="btn btn-outline-secondary" role="button">Sum</a>
-        <a onclick="sumAverage", class="btn btn-outline-secondary" role ="button">Average</a>
+        <a onclick="sumAverage()", class="btn btn-outline-secondary" role ="button">Average</a>
     </div>
     <div>
         <input type="text" id="update" placeholder="更新">
