@@ -120,6 +120,45 @@
                 })
         }
 
+        function scoreJudge(){
+            UTdata.fetchAll()
+            .then(function(results){
+                let msg = "";
+                for(let i = 0;i < results.length;i++){
+                    if(parseInt(results[i].get(key)) < 60){
+                        msg += results[i].get(key) + " D" + "<br>";
+                    }else if(parseInt(results[i].get(key)) >= 60 && parseInt(results[i].get(key)) < 70){
+                        msg += results[i].get(key) + " C" + "<br>";
+                    }else if(parseInt(results[i].get(key)) >= 70 && parseInt(results[i].get(key)) < 80){
+                        msg += results[i].get(key) + " B" + "<br>";
+                    }else if(parseInt(results[i].get(key)) >= 80 && parseInt(results[i].get(key)) < 90){
+                        msg += results[i].get(key) + " A" + "<br>";
+                    }else{
+                        msg += results[i].get(key) + " S" + "<br>";
+                    }
+                }
+                $("#display").removeClass();
+                $("#display").addClass("text-light"); 
+                $("#display").addClass("bg-primary"); 
+                $("#display").html(msg);
+            })
+            .catch(function(error) {
+                    $("#display").removeClass();
+                    $("#display").addClass("bg-warning");
+                    $("#display").html("delete fail:" + JSON.stringify(error));
+                })
+
+        }
+
+
+        
+        
+
+
+        
+
+    
+
         
     </script>
 </head>
@@ -135,7 +174,7 @@
         <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
         <a onclick="countData()" class="btn btn-outline-secondary" role="button">Count</a>
         <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a>
-        <a onclick="scorejudge()" class="btn btn-outline-secondary"
+        <a onclick="scoreJudge()" class="btn btn-outline-secondary"
         role="button">Judge</a>
     </div>
     <div>
