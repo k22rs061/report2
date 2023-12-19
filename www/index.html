@@ -193,6 +193,47 @@
                 })
         }
 
+        function scoreGpa(){
+            UTdata.fetchAll()
+            .then(function(results){
+                var gpa = 0;
+                var youso = 0;
+                for(let i = 0;i < results.length;i++){
+                    if(parseInt(results[i].get(key)) < 60){
+                        youso += 1;
+                        gpa += 0;
+                        //msg += results[i].get(key) + " D" + "<br>";
+                    }else if(parseInt(results[i].get(key)) >= 60 && parseInt(results[i].get(key)) < 70){
+                        youso += 1;
+                        gpa += 1;
+                        //msg += results[i].get(key) + " C" + "<br>";
+                    }else if(parseInt(results[i].get(key)) >= 70 && parseInt(results[i].get(key)) < 80){
+                        youso += 1;
+                        gpa += 2;
+                        //msg += results[i].get(key) + " B" + "<br>";
+                    }else if(parseInt(results[i].get(key)) >= 80 && parseInt(results[i].get(key)) < 90){
+                        youso += 1;
+                        gpa += 3;
+                        //msg += results[i].get(key) + " A" + "<br>";
+                    }else{
+                        youso += 1;
+                        gpa += 4;
+                        //msg += results[i].get(key) + " S" + "<br>";
+                    }  
+                }
+                gpa = gpa / youso;
+                $("#display").removeClass();
+                $("#display").addClass("text-light");
+                $("#display").addClass("bg-primary");
+                $("#display").html("GPA: " + gpa);
+            })
+            .catch(function(error) {
+                    $("#display").removeClass();
+                    $("#display").addClass("bg-warning");
+                    $("#display").html("delete fail:" + JSON.stringify(error));
+                })
+        }
+
 
         
         
