@@ -234,7 +234,48 @@
                 })
         }
 
-        
+        function gapSeach(){
+            const select1 = document.from1.select1;
+            const num = select1.selectedIndex;
+            UTdata.fetchAll()
+            .then(function(results){
+                let msg = "";
+                for(let i = 0;i < results.length;i++){
+                    if(parseInt(results[i].get(key)) < 60){
+                        if(parseInt(num) == 4){
+                            msg += results[i].get(key) + " D" + "<br>";
+                        }
+                    }else if(parseInt(results[i].get(key)) >= 60 && parseInt(results[i].get(key)) < 70){
+                        if(parseInt(num) == 3){
+                            msg += results[i].get(key) + " C" + "<br>";
+                        }
+                    }else if(parseInt(results[i].get(key)) >= 70 && parseInt(results[i].get(key)) < 80){
+                        if(parseInt(num) == 2){
+                            msg += results[i].get(key) + " B" + "<br>";
+                        }
+                    }else if(parseInt(results[i].get(key)) >= 80 && parseInt(results[i].get(key)) < 90){
+                        if(parseInt(num) == 1){
+                            msg += results[i].get(key) + " A" + "<br>";
+                        }
+                    }else{
+                        if(parseInt(num) == 0){
+                            msg += results[i].get(key) + " S" + "<br>";
+                        }
+                    }
+                }
+                $("#display").removeClass();
+                $("#display").addClass("text-light"); 
+                $("#display").addClass("bg-primary"); 
+                $("#display").html(msg);
+            })
+            .catch(function(error) {
+                    $("#display").removeClass();
+                    $("#display").addClass("bg-warning");
+                    $("#display").html("delete fail:" + JSON.stringify(error));
+                })
+
+        }
+
 
         
         
